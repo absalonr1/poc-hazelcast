@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hazelcast-client-configuration
+data:
+  hazelcast-client.xml: |-
+    <?xml version="1.0" encoding="UTF-8"?>
+    <hazelcast-client xsi:schemaLocation="http://www.hazelcast.com/schema/client-config hazelcast-client-config-3.11.xsd"
+    xmlns="http://www.hazelcast.com/schema/client-config"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <network>
+            <cluster-members>
+                <address>my-release-hazelcast.default.svc.cluster.local</address>
+            </cluster-members>
+            <!-- <outbound-ports>
+                <ports>34600</ports>
+                <ports>34700-34710</ports>
+            </outbound-ports> -->
+            <smart-routing>true</smart-routing>
+            <redo-operation>true</redo-operation>
+            <connection-timeout>5000</connection-timeout>
+        </network>
+        <!-- 
+        <connection-strategy async-start="false" reconnect-mode="ON">
+            <connection-retry>
+                <initial-backoff-millis>1000</initial-backoff-millis>
+                <max-backoff-millis>60000</max-backoff-millis>
+                <multiplier>2</multiplier>
+                <cluster-connect-timeout-millis>50000</cluster-connect-timeout-millis>
+                <jitter>0.2</jitter>
+            </connection-retry>
+        </connection-strategy>
+        -->
+        
+        
+    </hazelcast-client>
